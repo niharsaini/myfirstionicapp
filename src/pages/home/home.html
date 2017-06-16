@@ -1,0 +1,57 @@
+<ion-header xmlns:ion-color="http://www.w3.org/1999/xhtml" xmlns:ion-color="http://www.w3.org/1999/xhtml">
+  <ion-navbar>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+  <ion-icon name="contact"></ion-icon>
+
+  <ion-list>
+    <ion-item>
+    <ion-label floating>username</ion-label>
+    <ion-input type="text" minlength="6" maxlength="20" [(ngModel)]="username"></ion-input>
+    </ion-item>
+    <ion-item>
+    <ion-label floating>password</ion-label>
+    <ion-input type="password" minlength="10" [(ngModel)]="password"></ion-input>
+    </ion-item>
+  </ion-list>
+  <button class="submit" type="submit" ion-button (click)="onclick()">Log in</button>
+  <p>  New to vaioti, No problem with that </p>
+<ion-list>
+    <ion-item *ngFor="let item of comment;let i=index">
+
+      <ion-row>
+        <button ion-button [color]="secondary"> Delete</button>
+      <p>{{item}}</p>
+      </ion-row>
+    </ion-item>
+</ion-list>
+  <ion-list>
+  <ion-item *ngFor="let item of students">
+    <ion-row>
+      <p>{{item.name}}</p>
+      <p>{{item.batch}}</p>
+      <p>{{item.year}}</p>
+    </ion-row>
+  </ion-item>
+  </ion-list>
+  <ion-item>
+  <ion-label floating>name</ion-label>
+  <ion-input type="text"[(ngModel)]="student_name">name</ion-input>
+  </ion-item>
+  <ion-item>
+  <ion-label floating>batch</ion-label>
+  <ion-input type="text"[(ngModel)]="student_batch">batch</ion-input>
+    </ion-item>
+  <ion-item>
+  <ion-label floating>year</ion-label>
+  <ion-input type="text"[(ngModel)]="student_year">year</ion-input>
+  </ion-item>
+    <button ion-button (click)="addstudent()">add</button>
+  <ion-input type="text"[(ngModel)]="addcomment"></ion-input>
+  <button ion-button (click)="addcomments()">add</button>
+
+  <button ion-button (click)="deleteitem(i)">del</button>
+</ion-content>
+
