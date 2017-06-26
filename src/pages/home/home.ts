@@ -48,18 +48,18 @@ console.log(data)
     this.update={
       name:this.username,
       password:this.password,
-    }
+    };
     console.log("data sending");
     var headers = new Headers();
 
     headers.append('content-type','application/json;charset=UTF-8');
     headers.append('Access- Control-Allow-Origin','*');
     let options = new RequestOptions({headers:headers});
-    this.http.post('',JSON.stringify(this.update),options)
+    this.http.post("https://veh.herokuapp.com/insert",JSON.stringify(this.update),options)
       .map(res=>res.json()).subscribe(data=> {
       console.log(data)
     },err=>{
-        console.log("ERROR!:",err.json());
+        console.log("ERROR!:");
   });
     }
 
