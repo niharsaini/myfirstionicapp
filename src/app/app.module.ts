@@ -12,7 +12,9 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import {FirstpagePage} from "../pages/firstpage/firstpage";
 import {LoginPage} from "../pages/login/login";
-
+import { DatafetchProvider } from '../providers/datafetch/datafetch';
+import {HttpModule} from "@angular/http";
+//import {HttpModule} from'angular'
 
 @NgModule({
   declarations: [
@@ -29,6 +31,7 @@ import {LoginPage} from "../pages/login/login";
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -44,9 +47,11 @@ import {LoginPage} from "../pages/login/login";
 
   ],
   providers: [
+
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    DatafetchProvider
   ]
 })
 export class AppModule {}

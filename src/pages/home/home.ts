@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import {LoginPage} from "../login/login";
+import {DatafetchProvider} from "../../providers/datafetch/datafetch";
+import {Http, Request, RequestOptions, Headers} from "@angular/http";
 
 
 
@@ -11,23 +13,29 @@ import {LoginPage} from "../login/login";
 })
 export class HomePage {
 
+update:any;
   username: string;
   password: string;
   addcomment: String;
   comment: any = ["xyz", "qrl", "abc"];
-  students: any = [{"name": "nihar", "batch": "2014", "year": "3rd"}, {
-    "name": "sandy",
-    "batch": "2013",
-    "year": "4th"
-  }, {"name": "shubu", "batch": "2014", "year": "2nd"}];
+
   student_name: string;
   student_batch: string;
   student_year: string;
-
-
-  constructor(public navCtrl: NavController, public alertctrl: AlertController) {
-
+students:any;
+students_all:any;
+  constructor(public navCtrl: NavController, public alertctrl: AlertController,public datafetch:DatafetchProvider,public http:Http) {
+this.getdata()
   }
+
+    getdata(){
+    this.datafetch.load().then((data)=>
+      {
+        this.students= data;
+        this.students_all=this.students.students;
+console.log(data)
+      });
+    }
 
   onclick() {
 
@@ -36,6 +44,26 @@ export class HomePage {
     }
 
   }
+  setdata(){
+    this.update={
+      name:this.username,
+      password:this.password,
+    }
+    console.log("data sending");
+    var headers = new Headers();
+
+    headers.append('content-type','application/json;charset=UTF-8');
+    headers.append('Access- Control-Allow-Origin','*');
+    let options = new RequestOptions({headers:headers});
+    this.http.post('',JSON.stringify(this.update),options)
+      .map(res=>res.json()).subscribe(data=> {
+      console.log(data)
+    },err=>{
+        console.log("ERROR!:",err.json());
+  });
+    }
+
+
 
   addcomments() {
     this.comment.push(this.addcomment);
@@ -47,6 +75,7 @@ export class HomePage {
   }
 
   addstudent() {
+
     this.students.push({"name":this.student_name, "batch":this.student_batch,"year":this.student_year});
 this.student_name="";
     this.student_batch="";
