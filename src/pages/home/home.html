@@ -52,6 +52,13 @@
   <ion-input type="text"[(ngModel)]="addcomment"></ion-input>
   <button ion-button (click)="addcomments()">add</button>
 
+
   <button ion-button (click)="deleteitem(i)">del</button>
+  <ion-item>
+    <p>{{lat}}</p>
+    <p>{{long}}</p>
+  </ion-item>
+  <button ion-button (click)="geoloc()">LOC</button>
+
 </ion-content>
 

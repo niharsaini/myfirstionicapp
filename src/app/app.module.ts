@@ -15,6 +15,9 @@ import {LoginPage} from "../pages/login/login";
 import { DatafetchProvider } from '../providers/datafetch/datafetch';
 import {HttpModule} from "@angular/http";
 //import {HttpModule} from'angular'
+import { Geolocation } from "@ionic-native/geolocation";
+
+
 
 @NgModule({
   declarations: [
@@ -51,7 +54,8 @@ import {HttpModule} from "@angular/http";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    DatafetchProvider
+    DatafetchProvider,
+    Geolocation
   ]
 })
 export class AppModule {}
